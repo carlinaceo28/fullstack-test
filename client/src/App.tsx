@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import CadastrarAluno from "./pages/cadastrarAluno/CadastrarAluno";
 import RemoverAluno from "./pages/removerAluno/RemoverAluno";
 import EditarAluno from "./pages/editarAluno/EditarAluno";
+import Metricas from "./pages/metricas/Metricas";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path="/cadastrarAluno/:_id" element={<CadastrarAluno />} />
             <Route path="/removerAluno/:_id" element={<RemoverAluno />} />
             <Route path="/editarAluno/:_id" element={<EditarAluno />} />
+            <Route path="/minhasMetricas/:_id" element={<Metricas />} />
+
             <Route path="*" element={<h1>Nada</h1>} />
           </Routes>
         </BrowserRouter>

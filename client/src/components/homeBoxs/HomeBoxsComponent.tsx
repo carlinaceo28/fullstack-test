@@ -4,7 +4,7 @@ import {
   MdGroupAdd,
   MdGroupRemove,
   MdOutlineEditNote,
-  MdOutlineManageAccounts,
+  MdAnalytics,
 } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const HomeBoxsComponent = () => {
             />
           )}
           {info.id == 4 && (
-            <MdOutlineManageAccounts
+            <MdAnalytics
               className={styles.homeBoxsComponentIcon}
               size={32}
               color={"#ffffff"}
