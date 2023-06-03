@@ -37,8 +37,10 @@ const Login = () => {
       })
       .then((res) => {
         login(true);
-        navigate(`/home/${res?.data?._id}`);
         localStorage.setItem("userData", JSON.stringify(res?.data));
+      })
+      .then(() => {
+        navigate(`/home`);
       })
       .catch((error) => {
         console.error("Erro ao logar", error);

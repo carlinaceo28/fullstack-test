@@ -41,7 +41,6 @@ const RemoverAluno = () => {
             })
             .then((res) => {
               setAlunos(res?.data);
-              console.log(res.data);
             })
             .catch((error) => {
               console.error("Erro ao buscar alunos", error?.response?.message);

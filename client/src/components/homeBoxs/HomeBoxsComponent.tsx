@@ -17,7 +17,7 @@ const HomeBoxsComponent = () => {
       {HomeBoxs.map((info) => (
         <div
           key={info.id}
-          onClick={() => navigate(`/${info.slug}/${_id}`)}
+          onClick={() => navigate(`/${info.slug}`)}
           className={styles.homeBoxsComponentBox}
         >
           {info.id == 1 && (

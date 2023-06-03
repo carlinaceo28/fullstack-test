@@ -31,7 +31,6 @@ const PagesHeader = () => {
       })
         .then((res: any) => {
           setUserData(JSON.parse(res));
-          console.log("res da promise", JSON.parse(res));
         })
         .catch((error) => {
           console.error("error", error);
@@ -43,6 +42,7 @@ const PagesHeader = () => {
 
   const logout = () => {
     localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -68,7 +68,7 @@ const PagesHeader = () => {
               <ul className={styles.pagesHeaderUl}>
                 {PagesHeaderConst.map((item) => (
                   <li
-                    onClick={() => navigate(`/${item.slug}/${_id}`)}
+                    onClick={() => navigate(`/${item.slug}`)}
                     key={item?.id}
                     className={styles.pagesHeaderLi}
                   >
