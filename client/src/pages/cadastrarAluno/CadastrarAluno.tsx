@@ -53,7 +53,6 @@ const CadastrarAluno = () => {
       });
   };
 
-  const handleBlur = () => {};
   return (
     <div>
       <HomeHeader />
@@ -68,7 +67,6 @@ const CadastrarAluno = () => {
         <Input
           value={dataDeNascimento}
           onChange={handleChange}
-          onBlur={handleBlur}
           required
           type="text"
           placeholder="dd/mm/yy"
