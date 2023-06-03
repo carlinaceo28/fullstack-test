@@ -1,7 +1,7 @@
 .homeBoxsComponentContainer {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -11,6 +11,9 @@
 .homeBoxsComponentBox {
   width: 90%;
   height: 96px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background-color: #ea4c89;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -18,8 +21,7 @@
 
 .homeBoxsComponentP {
   color: #ffffff;
-  font-size: 1rem;
-  padding: 0 4px;
+  font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 0.5px;
 }

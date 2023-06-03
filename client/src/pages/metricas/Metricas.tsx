@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "../../components/chart/Chart";
-import HomeHeader from "../../components/homeHeader/HomeHeader";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
+  Stack,
 } from "@chakra-ui/react";
 import axios from "axios";
 import PagesHeader from "../../components/pagesHeader/PagesHeader";
-
+import styles from "./metricas.module.scss";
 interface IAlunoData {
   faixa: string;
   quantidade: number;
@@ -56,35 +55,36 @@ const Metricas = () => {
     getFilteredData();
   }, []);
   return (
-    <div>
+    <div className={styles.metricasContainer}>
       <PagesHeader />
       <Chart alunos={alunos} />
-
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption>Informações sobre os alunos</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Label</Th>
-              <Th>Quantidade</Th>
-              <Th>Porcentagem</Th>
-            </Tr>
-          </Thead>
-          {alunos?.map((aluno, key) => (
-            <Tbody key={key}>
+      <Stack>
+        <TableContainer>
+          <Table variant="simple">
+            <TableCaption>Informações sobre os alunos</TableCaption>
+            <Thead>
               <Tr>
-                {aluno?.faixa === "55+" ? (
-                  <Td>{aluno?.faixa} anos</Td>
-                ) : (
-                  <Td>Entre {aluno?.faixa} anos</Td>
-                )}
-                <Td>{aluno?.quantidade}</Td>
-                <Td>{aluno?.porcentagem} %</Td>
+                <Th>Label</Th>
+                <Th>Quantidade</Th>
+                <Th>Porcentagem</Th>
               </Tr>
-            </Tbody>
-          ))}
-        </Table>
-      </TableContainer>
+            </Thead>
+            {alunos?.map((aluno, key) => (
+              <Tbody key={key}>
+                <Tr>
+                  {aluno?.faixa === "55+" ? (
+                    <Td>{aluno?.faixa} anos</Td>
+                  ) : (
+                    <Td>Entre {aluno?.faixa} anos</Td>
+                  )}
+                  <Td>{aluno?.quantidade}</Td>
+                  <Td>{aluno?.porcentagem} %</Td>
+                </Tr>
+              </Tbody>
+            ))}
+          </Table>
+        </TableContainer>
+      </Stack>
     </div>
   );
 };

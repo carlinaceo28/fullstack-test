@@ -1,5 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import styles from "./chart.module.scss";
 ChartJS.register(ArcElement, Tooltip, Legend);
 interface IAlunoData {
   alunos: { faixa: string; quantidade: number; porcentagem: number }[];
@@ -31,8 +32,8 @@ const Chart = ({ alunos }: IAlunoData) => {
     ],
   };
   return (
-    <div>
-      <Doughnut data={data} />
+    <div className={styles.chartContainer}>
+      <Doughnut options={{ maintainAspectRatio: false }} data={data} />
     </div>
   );
 };
