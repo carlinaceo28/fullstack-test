@@ -94,5 +94,67 @@ export default {
     } catch (error) {
       res.status(500).send({ message: "Internal Server Error", error })
     }
+  },
+
+  async filtrarAlunosPorIdade(req: Request, res: Response) {
+    try {
+      const buscarTodosAlunos = await Aluno.find()
+        .then(alunos => {
+          function calcularIdade(dataDeNascimento: string) {
+
+            const hoje = new Date();
+            const [dia, mes, ano] = dataDeNascimento.split('/');
+            const dataNascimento = new Date(Number(ano), Number(mes) - 1, Number(dia));
+
+            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            const mesAtual = hoje.getMonth();
+            const diaAtual = hoje.getDate();
+
+            if (mesAtual < dataNascimento.getMonth() || (mesAtual === dataNascimento.getMonth() && diaAtual < dataNascimento.getDate())) {
+              idade--;
+            }
+
+            return idade;
+          }
+          function filtrarAlunosPorFaixaEtaria(alunos: any) {
+            const faixasEtarias = [
+              { faixa: '18-25', quantidade: 0, porcentagem: 0 },
+              { faixa: '26-35', quantidade: 0, porcentagem: 0 },
+              { faixa: '36-45', quantidade: 0, porcentagem: 0 },
+              { faixa: '46-55', quantidade: 0, porcentagem: 0 },
+              { faixa: '55+', quantidade: 0, porcentagem: 0 }
+            ];
+
+            const totalAlunos = alunos.length;
+
+            alunos.forEach((aluno: any) => {
+              const idade = calcularIdade(aluno.dataDeNascimento);
+
+              const faixaEtaria = faixasEtarias.find(faixa => {
+                const [min, max] = faixa.faixa.split('-');
+                return idade >= parseInt(min) && idade <= parseInt(max);
+              });
+
+              if (faixaEtaria) {
+                faixaEtaria.quantidade++;
+              }
+            });
+
+            faixasEtarias.forEach(faixaEtaria => {
+              faixaEtaria.porcentagem = (faixaEtaria.quantidade / totalAlunos) * 100;
+            });
+
+            return faixasEtarias;
+          }
+          const resultados = filtrarAlunosPorFaixaEtaria(alunos);
+          console.log(resultados);
+          return res.status(200).send(resultados);
+        })
+        .catch(error => {
+          return res.status(400).send({ message: "Falha ao filtrar alunos", error })
+        });
+    } catch (error) {
+      res.status(500).send({ message: "Internal Server Error", error })
+    }
   }
 }
