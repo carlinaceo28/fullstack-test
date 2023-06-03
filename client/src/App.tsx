@@ -8,6 +8,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./pages/home/Home";
 import CadastrarAluno from "./pages/cadastrarAluno/CadastrarAluno";
 import RemoverAluno from "./pages/removerAluno/RemoverAluno";
+import EditarAluno from "./pages/editarAluno/EditarAluno";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/home/:_id" element={<Home />} />
             <Route path="/cadastrarAluno/:_id" element={<CadastrarAluno />} />
             <Route path="/removerAluno/:_id" element={<RemoverAluno />} />
+            <Route path="/editarAluno/:_id" element={<EditarAluno />} />
             <Route path="*" element={<h1>Nada</h1>} />
           </Routes>
         </BrowserRouter>
