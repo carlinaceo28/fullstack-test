@@ -10,6 +10,7 @@ interface IUserData {
 }
 
 const HomeHeader: React.FC<IUserData> = ({ userData }) => {
+  console.log(userData);
   return (
     <header className={styles.homeContainerHeader}>
       <div className={styles.homeHeaderDiv}>

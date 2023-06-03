@@ -150,7 +150,7 @@ export default {
           console.log(resultados);
           return res.status(200).send(resultados);
         })
-        .catch(error => {
+        .catch((error) => {
           return res.status(400).send({ message: "Falha ao filtrar alunos", error })
         });
     } catch (error) {
