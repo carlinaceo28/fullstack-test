@@ -6,6 +6,8 @@ import { AuthContextProvider } from "./context/Auth";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
 import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./pages/home/Home";
+import CadastrarAluno from "./pages/cadastrarAluno/CadastrarAluno";
+import RemoverAluno from "./pages/removerAluno/RemoverAluno";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
             <Route path="/home/:_id" element={<Home />} />
+            <Route path="/cadastrarAluno/:_id" element={<CadastrarAluno />} />
+            <Route path="/removerAluno/:_id" element={<RemoverAluno />} />
             <Route path="*" element={<h1>Nada</h1>} />
           </Routes>
         </BrowserRouter>

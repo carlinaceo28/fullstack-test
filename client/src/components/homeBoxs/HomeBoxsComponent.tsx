@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const HomeBoxsComponent = () => {
   const navigate = useNavigate();
   let { _id } = useParams();
+
   return (
     <div className={styles.homeBoxsComponentContainer}>
       {HomeBoxs.map((info) => (
