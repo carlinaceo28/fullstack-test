@@ -13,6 +13,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import axios from "axios";
+import PagesHeader from "../../components/pagesHeader/PagesHeader";
 
 interface IAlunoData {
   faixa: string;
@@ -56,7 +57,7 @@ const Metricas = () => {
   }, []);
   return (
     <div>
-      <HomeHeader />
+      <PagesHeader />
       <Chart alunos={alunos} />
 
       <TableContainer>

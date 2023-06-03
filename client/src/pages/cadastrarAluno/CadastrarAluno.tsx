@@ -1,11 +1,14 @@
 import { useState } from "react";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
-import { Button, Input, Stack } from "@chakra-ui/react";
+import { Button, Input, Stack, useToast } from "@chakra-ui/react";
 import axios from "axios";
+import styles from "./cadastrarAluno.module.scss";
+import PagesHeader from "../../components/pagesHeader/PagesHeader";
 
 const CadastrarAluno = () => {
   const [nome, setNome] = useState("");
   const [dataDeNascimento, setDataDeNascimento] = useState("");
+  const toast = useToast();
 
   const handleChange = (event: any) => {
     const formattedValue = formatInputValue(event.target.value);
@@ -42,10 +45,20 @@ const CadastrarAluno = () => {
           .then((res) => {
             setNome("");
             setDataDeNascimento("");
-            console.log(res.data);
+            toast({
+              title: res?.data?.message,
+              status: "success",
+              duration: 5000,
+              isClosable: true,
+            });
           })
           .catch((error) => {
-            console.error("Erro ao cadastrar aluno(a)", error);
+            toast({
+              title: error?.message,
+              status: "error",
+              duration: 5000,
+              isClosable: true,
+            });
           });
       })
       .catch((error) => {
@@ -54,10 +67,10 @@ const CadastrarAluno = () => {
   };
 
   return (
-    <div>
-      <HomeHeader />
+    <div className={styles.cadastrarAlunoMain}>
+      <PagesHeader />
 
-      <Stack spacing={3}>
+      <Stack spacing={3} p={4}>
         <Input
           value={nome}
           onChange={(e) => setNome(e.target.value)}

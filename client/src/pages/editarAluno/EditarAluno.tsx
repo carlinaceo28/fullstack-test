@@ -19,6 +19,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import PagesHeader from "../../components/pagesHeader/PagesHeader";
 
 interface IAlunoData {
   _id: string;
@@ -107,10 +108,9 @@ const EditarAluno = () => {
         setResponse(res?.data);
         setNome("");
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
         toast({
-          title: err?.message,
+          title: error?.message,
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -119,7 +119,7 @@ const EditarAluno = () => {
   };
   return (
     <div>
-      <HomeHeader />
+      <PagesHeader />
       <Stack p={4}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">

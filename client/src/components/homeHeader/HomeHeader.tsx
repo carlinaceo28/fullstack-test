@@ -24,6 +24,7 @@ const HomeHeader = () => {
 
     getUserFromStorage();
   }, []);
+
   return (
     <header className={styles.homeContainerHeader}>
       <div className={styles.homeHeaderDiv}>

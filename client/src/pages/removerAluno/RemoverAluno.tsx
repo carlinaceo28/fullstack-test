@@ -11,6 +11,7 @@ import axios from "axios";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
 import styles from "./removerAluno.module.scss";
 import { useToast } from "@chakra-ui/react";
+import PagesHeader from "../../components/pagesHeader/PagesHeader";
 interface IAlunoData {
   _id: string;
   nome: string;
@@ -92,7 +93,7 @@ const RemoverAluno = () => {
 
   return (
     <div className={styles.removerAlunoMain}>
-      <HomeHeader />
+      <PagesHeader />
       <Stack p={4}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
