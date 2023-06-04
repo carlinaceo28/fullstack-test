@@ -147,7 +147,6 @@ export default {
             return faixasEtarias;
           }
           const resultados = filtrarAlunosPorFaixaEtaria(alunos);
-          console.log(resultados);
           return res.status(200).send(resultados);
         })
         .catch((error) => {

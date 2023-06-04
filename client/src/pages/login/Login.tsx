@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -14,11 +14,13 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
+import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
@@ -29,10 +31,15 @@ const Login = () => {
         userEmail: email,
         userPassword: password,
       })
-      .then((res) => {
-        localStorage.setItem("userData", JSON.stringify(res?.data));
-        login(true);
-        navigate("/home");
+      .then(async (res) => {
+        await AsyncLocalStorage.setItem("userData", JSON.stringify(res?.data))
+          .then(() => {
+            login(true);
+            navigate("/home");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
         toast({
@@ -86,11 +93,13 @@ const Login = () => {
           >
             Login
           </Button>
-          <div
-            onClick={() => navigate("/registrar")}
-            className={styles.loginContainerDivP}
-          >
-            <p className={styles.loginContainerP}>Registre-se</p>
+          <div className={styles.loginContainerDivP}>
+            <p
+              onClick={() => navigate("/registrar")}
+              className={styles.loginContainerP}
+            >
+              Registre-se
+            </p>
           </div>
         </main>
       </Container>

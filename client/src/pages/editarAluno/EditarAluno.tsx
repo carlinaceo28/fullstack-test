@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./editarAluno.module.scss";
-import HomeHeader from "../../components/homeHeader/HomeHeader";
 import axios from "axios";
 import {
   Button,
@@ -85,7 +84,6 @@ const EditarAluno = () => {
   }, [response]);
 
   const editarAluno = async (_id: string) => {
-    console.log(token);
     await axios
       .put(
         `http://localhost:5000/editarAluno/${_id}`,
@@ -236,7 +234,6 @@ const EditarAluno = () => {
             </Button>
             <Button
               onClick={() => {
-                console.log(alunoId);
                 editarAluno(alunoId);
               }}
               variant="ghost"

@@ -10,7 +10,6 @@ export default {
   async login(req: Request, res: Response) {
     try {
       const { userEmail, userPassword }: IUserModel = req.body;
-      console.log(userEmail, userPassword);
 
       if (!userEmail || !userPassword) {
         return res.status(400).send({ message: "Preencha os campos corretamente" });

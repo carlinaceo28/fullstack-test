@@ -24,7 +24,6 @@ const PagesHeader = () => {
   const { logout } = useAuth();
 
   const navigate = useNavigate();
-  let { _id } = useParams();
 
   useEffect(() => {
     const getUserFromStorage = () => {

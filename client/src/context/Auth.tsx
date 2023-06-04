@@ -4,12 +4,16 @@ interface IProps {
   isAuthenticated: boolean;
   login: (value: boolean) => void;
   logout: () => void;
+  persist: any;
+  setPersist: any;
 }
 
 export const AuthContext = createContext<IProps>({
   isAuthenticated: false,
   login() {},
   logout() {},
+  persist: {},
+  setPersist() {},
 });
 
 interface IChildren {
@@ -18,7 +22,9 @@ interface IChildren {
 
 export function AuthContextProvider({ children }: IChildren) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
+  const [persist, setPersist] = useState(
+    JSON.parse(localStorage.getItem("userData")!)
+  );
   const login = (value: boolean) => {
     setIsAuthenticated(value);
   };
@@ -28,7 +34,7 @@ export function AuthContextProvider({ children }: IChildren) {
   };
 
   const value = useMemo(
-    () => ({ isAuthenticated, login, logout }),
+    () => ({ isAuthenticated, login, logout, setPersist, persist }),
     [isAuthenticated]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

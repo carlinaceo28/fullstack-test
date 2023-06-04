@@ -1,7 +1,7 @@
 import "./App.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
 import { AuthContextProvider } from "./context/Auth";
 import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./pages/home/Home";
@@ -9,9 +9,9 @@ import CadastrarAluno from "./pages/cadastrarAluno/CadastrarAluno";
 import RemoverAluno from "./pages/removerAluno/RemoverAluno";
 import EditarAluno from "./pages/editarAluno/EditarAluno";
 import Metricas from "./pages/metricas/Metricas";
-import { useEffect, useState } from "react";
-import useAuth from "./hooks/useAuth";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
+import PersistLogin from "./components/persistLogin/PersistLogin";
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
   return (
@@ -21,15 +21,28 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
-            <Route path="/loading" element={<h1>Carregando...</h1>} />
-            <Route element={<AuthRoute />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
-              <Route path="/removerAluno" element={<RemoverAluno />} />
-              <Route path="/editarAluno" element={<EditarAluno />} />
-              <Route path="/minhasMetricas" element={<Metricas />} />
+            <Route path="*" element={<NotFound />} />
+            <Route element={<PersistLogin />}>
+              <Route element={<AuthRoute />}>
+                <Route path="/home" element={<Home />} />
+              </Route>
+
+              <Route element={<AuthRoute />}>
+                <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
+              </Route>
+
+              <Route element={<AuthRoute />}>
+                <Route path="/removerAluno" element={<RemoverAluno />} />
+              </Route>
+
+              <Route element={<AuthRoute />}>
+                <Route path="/editarAluno" element={<EditarAluno />} />
+              </Route>
+
+              <Route element={<AuthRoute />}>
+                <Route path="/minhasMetricas" element={<Metricas />} />
+              </Route>
             </Route>
-            <Route path="*" element={<h1>O que você está buscando...?</h1>} />
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>

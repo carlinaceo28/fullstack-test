@@ -38,11 +38,10 @@ const HomeHeader = () => {
     <header className={styles.homeContainerHeader}>
       <div className={styles.homeHeaderDiv}>
         <Avatar name={userData?.userName} src={AvatarImage} />
-        <MdLogout
-          style={{ cursor: "pointer" }}
-          size={24}
-          onClick={handleLogout}
-        />
+        <span onClick={handleLogout}>
+          <MdLogout style={{ cursor: "pointer" }} size={24} />
+          <p style={{ cursor: "pointer" }}>Logout</p>
+        </span>
       </div>
       <p className={styles.homeHeaderP}>Olá, {userData?.userName}!</p>
     </header>

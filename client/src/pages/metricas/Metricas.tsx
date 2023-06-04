@@ -80,7 +80,7 @@ const Metricas = () => {
                       <Td>Entre {aluno?.faixa} anos</Td>
                     )}
                     <Td>{aluno?.quantidade}</Td>
-                    <Td>{aluno?.porcentagem} %</Td>
+                    <Td>{aluno?.porcentagem.toFixed(2)} %</Td>
                   </Tr>
                 </Tbody>
               ))}
