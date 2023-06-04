@@ -6,23 +6,22 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import styles from "./login.module.scss";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { MdAlternateEmail, MdOutlineSupervisorAccount } from "react-icons/md";
+import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const signup = async () => {
     await axios
@@ -36,7 +35,12 @@ const Login = () => {
         navigate("/home");
       })
       .catch((error) => {
-        console.error("Erro ao logar", error);
+        toast({
+          title: error?.response?.data?.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       });
   };
   const handleClick = () => setShow(!show);
@@ -52,7 +56,7 @@ const Login = () => {
             </InputLeftElement>
             <Input
               onChange={(e) => setEmail(e.target.value)}
-              type="tel"
+              type="email"
               placeholder="Email"
             />
           </InputGroup>
@@ -82,7 +86,10 @@ const Login = () => {
           >
             Login
           </Button>
-          <div className={styles.loginContainerDivP}>
+          <div
+            onClick={() => navigate("/registrar")}
+            className={styles.loginContainerDivP}
+          >
             <p className={styles.loginContainerP}>Registre-se</p>
           </div>
         </main>

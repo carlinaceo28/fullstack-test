@@ -81,9 +81,9 @@ const RemoverAluno = () => {
         });
         setResponse(res?.data);
       })
-      .catch((err) => {
+      .catch((error) => {
         toast({
-          title: err?.message,
+          title: error?.response?.data?.message,
           status: "error",
           duration: 5000,
           isClosable: true,

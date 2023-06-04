@@ -111,7 +111,7 @@ const EditarAluno = () => {
       })
       .catch((error) => {
         toast({
-          title: error?.message,
+          title: error?.response?.data?.message,
           status: "error",
           duration: 5000,
           isClosable: true,

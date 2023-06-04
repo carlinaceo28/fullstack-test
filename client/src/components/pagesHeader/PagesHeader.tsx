@@ -88,7 +88,7 @@ const PagesHeader = () => {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={handleLogout}>
+            <Button colorScheme="red" mr={3} onClick={handleLogout}>
               Logout
             </Button>
           </DrawerFooter>
