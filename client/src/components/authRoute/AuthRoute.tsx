@@ -1,10 +1,8 @@
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router";
-import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
 
 export const AuthRoute = () => {
-  const { isAuthenticated } = useAuth();
   const location = useLocation();
   const [user, setUser] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -22,8 +20,6 @@ export const AuthRoute = () => {
     };
     getUser();
   }, []);
-
-  console.log(user);
 
   return user ? (
     <Outlet />

@@ -13,7 +13,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PagesHeaderConst } from "../../const/PagesHeaderNav";
 import useAuth from "../../hooks/useAuth";
 

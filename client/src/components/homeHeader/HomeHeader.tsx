@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./homeHeader.module.scss";
 import IUser from "../../interfaces/userInterface";
 import { Avatar } from "@chakra-ui/react";

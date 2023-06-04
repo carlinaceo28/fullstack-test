@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const NotFound = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {

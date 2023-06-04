@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Container,
@@ -20,7 +20,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();

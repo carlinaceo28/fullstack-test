@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import axios from "axios";
-import HomeHeader from "../../components/homeHeader/HomeHeader";
 import styles from "./removerAluno.module.scss";
 import { useToast } from "@chakra-ui/react";
 import PagesHeader from "../../components/pagesHeader/PagesHeader";
@@ -28,7 +27,7 @@ const RemoverAluno = () => {
 
   useEffect(() => {
     const getData = () => {
-      new Promise((resolve, reject) => {
+      new Promise((resolve) => {
         resolve(localStorage.getItem("userData"));
       })
         .then(async (response: any) => {
