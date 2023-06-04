@@ -14,25 +14,6 @@ import useAuth from "./hooks/useAuth";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
 
 function App() {
-  // const { isAuthenticated } = useAuth();
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const getUserFromStorage = () => {
-  //     new Promise((resolve) => {
-  //       resolve(localStorage.getItem("userData"));
-  //     })
-  //       .then((res: any) => {
-  //         setUser(JSON.parse(res));
-  //       })
-  //       .catch((error) => {
-  //         console.error("error", error);
-  //       });
-  //   };
-
-  //   getUserFromStorage();
-  // }, [isAuthenticated]);
-
   return (
     <ChakraProvider>
       <AuthContextProvider>
@@ -41,7 +22,6 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
             <Route path="/loading" element={<h1>Carregando...</h1>} />
-
             <Route element={<AuthRoute />}>
               <Route path="/home" element={<Home />} />
               <Route path="/cadastrarAluno" element={<CadastrarAluno />} />

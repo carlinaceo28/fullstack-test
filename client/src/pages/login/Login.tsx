@@ -9,19 +9,10 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import styles from "./login.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import {
-  MdAlternateEmail,
-  MdOutlineSupervisorAccount,
-  MdSupervisedUserCircle,
-} from "react-icons/md";
+import { MdAlternateEmail, MdOutlineSupervisorAccount } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
-interface IUser {
-  userName: string;
-  userEmail: string;
-  _id: string;
-}
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,8 +45,7 @@ const Login = () => {
     <div className={styles.loginContainer}>
       <Container>
         <main className={styles.loginContainerMain}>
-          {/* <img src={LOGO} alt="logo" className={styles.loginContainerLogoImg} /> */}
-          <MdOutlineSupervisorAccount size={200} />
+          <img src={LOGO} alt="logo" className={styles.loginContainerLogoImg} />
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <MdAlternateEmail color="gray.300" />
@@ -92,6 +82,9 @@ const Login = () => {
           >
             Login
           </Button>
+          <div className={styles.loginContainerDivP}>
+            <p className={styles.loginContainerP}>Registre-se</p>
+          </div>
         </main>
       </Container>
     </div>

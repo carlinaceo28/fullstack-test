@@ -4,12 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(159, 48, 91);
-  background: radial-gradient(
-    circle,
-    rgba(159, 48, 91, 1) 0%,
-    rgba(63, 57, 195, 1) 98%
-  );
 }
 
 .loginContainerMain {
@@ -26,5 +20,22 @@
   height: 200px;
   border-radius: 50%;
   position: absolute;
-  bottom: 180px;
+  bottom: 200px;
+}
+
+.loginContainerDivP {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loginContainerP {
+  color: #ea4c89;
+  cursor: pointer;
+  width: 17%;
+}
+
+.loginContainerP:hover {
+  display: block;
+  border-bottom: 1px solid #ea4c89;
 }
