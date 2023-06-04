@@ -17,6 +17,7 @@ import {
   ModalCloseButton,
   useDisclosure,
   useToast,
+  Container,
 } from "@chakra-ui/react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import PagesHeader from "../../components/pagesHeader/PagesHeader";
@@ -119,28 +120,55 @@ const EditarAluno = () => {
   };
   return (
     <div>
-      <PagesHeader />
-      <Stack p={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <BiSearchAlt2 color="gray.300" />
-          </InputLeftElement>
-          <Input
-            type="text"
-            placeholder="Pesquisar aluno"
-            onChange={(e) => setNome(e.target.value)}
-          />
-        </InputGroup>
-      </Stack>
-      <div>
-        {nome &&
-          alunos
-            .filter(
-              (aluno) =>
-                aluno.nome.startsWith(nome) ||
-                aluno.nome.toLowerCase().startsWith(nome.toLowerCase())
-            )
-            .map((aluno) => (
+      <Container>
+        <PagesHeader />
+        <Stack p={4}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <BiSearchAlt2 color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="text"
+              placeholder="Pesquisar aluno"
+              onChange={(e) => setNome(e.target.value)}
+            />
+          </InputGroup>
+        </Stack>
+        <div>
+          {nome &&
+            alunos
+              .filter(
+                (aluno) =>
+                  aluno.nome.startsWith(nome) ||
+                  aluno.nome.toLowerCase().startsWith(nome.toLowerCase())
+              )
+              .map((aluno) => (
+                <div className={styles.editarAlunoComponent} key={aluno?._id}>
+                  <p className={styles.editarAlunoComponentNome}>
+                    {aluno?.nome}
+                  </p>
+                  <p>{aluno?.dataDeNascimento}</p>
+                  <Button
+                    backgroundColor={"#ea4c89"}
+                    size="xs"
+                    padding={4}
+                    color={"#ffffff"}
+                    width={"25%"}
+                    fontSize={"small"}
+                    onClick={() => {
+                      onOpen();
+                      setNome(aluno?.nome);
+                      setDataDeNascimentoAtual(aluno?.dataDeNascimento);
+                      setAlunoId(aluno?._id);
+                    }}
+                  >
+                    Editar
+                  </Button>
+                </div>
+              ))}
+
+          {!nome &&
+            alunos.map((aluno) => (
               <div className={styles.editarAlunoComponent} key={aluno?._id}>
                 <p className={styles.editarAlunoComponentNome}>{aluno?.nome}</p>
                 <p>{aluno?.dataDeNascimento}</p>
@@ -162,31 +190,9 @@ const EditarAluno = () => {
                 </Button>
               </div>
             ))}
+        </div>
+      </Container>
 
-        {!nome &&
-          alunos.map((aluno) => (
-            <div className={styles.editarAlunoComponent} key={aluno?._id}>
-              <p className={styles.editarAlunoComponentNome}>{aluno?.nome}</p>
-              <p>{aluno?.dataDeNascimento}</p>
-              <Button
-                backgroundColor={"#ea4c89"}
-                size="xs"
-                padding={4}
-                color={"#ffffff"}
-                width={"25%"}
-                fontSize={"small"}
-                onClick={() => {
-                  onOpen();
-                  setNome(aluno?.nome);
-                  setDataDeNascimentoAtual(aluno?.dataDeNascimento);
-                  setAlunoId(aluno?._id);
-                }}
-              >
-                Editar
-              </Button>
-            </div>
-          ))}
-      </div>
       <Modal
         finalFocusRef={finalRef}
         isOpen={isOpen}

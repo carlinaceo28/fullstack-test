@@ -6,11 +6,10 @@ import {
   MdOutlineEditNote,
   MdAnalytics,
 } from "react-icons/md";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomeBoxsComponent = () => {
   const navigate = useNavigate();
-  let { _id } = useParams();
 
   return (
     <div className={styles.homeBoxsComponentContainer}>

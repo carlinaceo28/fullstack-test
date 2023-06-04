@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Button,
+  Container,
   Input,
   InputGroup,
   InputLeftElement,
@@ -92,28 +93,50 @@ const RemoverAluno = () => {
 
   return (
     <div className={styles.removerAlunoMain}>
-      <PagesHeader />
-      <Stack p={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <BiSearchAlt2 color="gray.300" />
-          </InputLeftElement>
-          <Input
-            type="text"
-            placeholder="Pesquisar aluno"
-            onChange={(e) => setNome(e.target.value)}
-          />
-        </InputGroup>
-      </Stack>
-      <div>
-        {nome &&
-          alunos
-            .filter(
-              (aluno) =>
-                aluno.nome.startsWith(nome) ||
-                aluno.nome.toLowerCase().startsWith(nome.toLowerCase())
-            )
-            .map((aluno) => (
+      <Container>
+        <PagesHeader />
+        <Stack p={4}>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <BiSearchAlt2 color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="text"
+              placeholder="Pesquisar aluno"
+              onChange={(e) => setNome(e.target.value)}
+            />
+          </InputGroup>
+        </Stack>
+        <div>
+          {nome &&
+            alunos
+              .filter(
+                (aluno) =>
+                  aluno.nome.startsWith(nome) ||
+                  aluno.nome.toLowerCase().startsWith(nome.toLowerCase())
+              )
+              .map((aluno) => (
+                <div className={styles.removerAlunoComponent} key={aluno?._id}>
+                  <p className={styles.removerAlunoComponentNome}>
+                    {aluno?.nome}
+                  </p>
+                  <p>{aluno?.dataDeNascimento}</p>
+                  <Button
+                    backgroundColor={"#ea4c89"}
+                    size="xs"
+                    padding={4}
+                    color={"#ffffff"}
+                    width={"25%"}
+                    fontSize={"small"}
+                    onClick={() => removerAluno(aluno?._id)}
+                  >
+                    Remover
+                  </Button>
+                </div>
+              ))}
+
+          {!nome &&
+            alunos.map((aluno) => (
               <div className={styles.removerAlunoComponent} key={aluno?._id}>
                 <p className={styles.removerAlunoComponentNome}>
                   {aluno?.nome}
@@ -132,26 +155,8 @@ const RemoverAluno = () => {
                 </Button>
               </div>
             ))}
-
-        {!nome &&
-          alunos.map((aluno) => (
-            <div className={styles.removerAlunoComponent} key={aluno?._id}>
-              <p className={styles.removerAlunoComponentNome}>{aluno?.nome}</p>
-              <p>{aluno?.dataDeNascimento}</p>
-              <Button
-                backgroundColor={"#ea4c89"}
-                size="xs"
-                padding={4}
-                color={"#ffffff"}
-                width={"25%"}
-                fontSize={"small"}
-                onClick={() => removerAluno(aluno?._id)}
-              >
-                Remover
-              </Button>
-            </div>
-          ))}
-      </div>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
-import { Button, Input, Stack, useToast } from "@chakra-ui/react";
+import { Button, Container, Input, Stack, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import styles from "./cadastrarAluno.module.scss";
 import PagesHeader from "../../components/pagesHeader/PagesHeader";
@@ -68,34 +68,36 @@ const CadastrarAluno = () => {
 
   return (
     <div className={styles.cadastrarAlunoMain}>
-      <PagesHeader />
+      <Container>
+        <PagesHeader />
 
-      <Stack spacing={3} p={4}>
-        <Input
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          placeholder="Nome do aluno"
-          size="lg"
-        />
-        <Input
-          value={dataDeNascimento}
-          onChange={handleChange}
-          required
-          type="text"
-          placeholder="dd/mm/yy"
-        />
-        <Button
-          backgroundColor={"#ea4c89"}
-          size="xs"
-          padding={6}
-          color={"#ffffff"}
-          width={"100%"}
-          fontSize={"medium"}
-          onClick={cadastrarAluno}
-        >
-          Cadastrar
-        </Button>
-      </Stack>
+        <Stack spacing={3} p={4}>
+          <Input
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            placeholder="Nome do aluno"
+            size="lg"
+          />
+          <Input
+            value={dataDeNascimento}
+            onChange={handleChange}
+            required
+            type="text"
+            placeholder="dd/mm/yy"
+          />
+          <Button
+            backgroundColor={"#ea4c89"}
+            size="xs"
+            padding={6}
+            color={"#ffffff"}
+            width={"100%"}
+            fontSize={"medium"}
+            onClick={cadastrarAluno}
+          >
+            Cadastrar
+          </Button>
+        </Stack>
+      </Container>
     </div>
   );
 };

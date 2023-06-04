@@ -11,18 +11,27 @@ import EditarAluno from "./pages/editarAluno/EditarAluno";
 import Metricas from "./pages/metricas/Metricas";
 import { useEffect, useState } from "react";
 import useAuth from "./hooks/useAuth";
+import { AuthRoute } from "./components/authRoute/AuthRoute";
 
 function App() {
-  const [user, setUser] = useState();
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
+  // const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("userData");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const getUserFromStorage = () => {
+  //     new Promise((resolve) => {
+  //       resolve(localStorage.getItem("userData"));
+  //     })
+  //       .then((res: any) => {
+  //         setUser(JSON.parse(res));
+  //       })
+  //       .catch((error) => {
+  //         console.error("error", error);
+  //       });
+  //   };
+
+  //   getUserFromStorage();
+  // }, [isAuthenticated]);
 
   return (
     <ChakraProvider>
@@ -31,18 +40,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
-            {isAuthenticated || user ? (
-              <>
-                <Route path="/home" element={<Home />} />
-                <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
-                <Route path="/removerAluno" element={<RemoverAluno />} />
-                <Route path="/editarAluno" element={<EditarAluno />} />
-                <Route path="/minhasMetricas" element={<Metricas />} />
-              </>
-            ) : (
-              <Route path="/unauthorized" element={<h1>Sem autorização</h1>} />
-            )}
+            <Route path="/loading" element={<h1>Carregando...</h1>} />
 
+            <Route element={<AuthRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
+              <Route path="/removerAluno" element={<RemoverAluno />} />
+              <Route path="/editarAluno" element={<EditarAluno />} />
+              <Route path="/minhasMetricas" element={<Metricas />} />
+            </Route>
             <Route path="*" element={<h1>O que você está buscando...?</h1>} />
           </Routes>
         </BrowserRouter>

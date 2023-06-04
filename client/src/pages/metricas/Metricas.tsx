@@ -10,6 +10,7 @@ import {
   TableCaption,
   TableContainer,
   Stack,
+  Container,
 } from "@chakra-ui/react";
 import axios from "axios";
 import PagesHeader from "../../components/pagesHeader/PagesHeader";
@@ -56,35 +57,37 @@ const Metricas = () => {
   }, []);
   return (
     <div className={styles.metricasContainer}>
-      <PagesHeader />
-      <Chart alunos={alunos} />
-      <Stack>
-        <TableContainer>
-          <Table variant="simple">
-            <TableCaption>Informações sobre os alunos</TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Label</Th>
-                <Th>Quantidade</Th>
-                <Th>Porcentagem</Th>
-              </Tr>
-            </Thead>
-            {alunos?.map((aluno, key) => (
-              <Tbody key={key}>
+      <Container>
+        <PagesHeader />
+        <Chart alunos={alunos} />
+        <Stack>
+          <TableContainer>
+            <Table variant="simple">
+              <TableCaption>Informações sobre os alunos</TableCaption>
+              <Thead>
                 <Tr>
-                  {aluno?.faixa === "55+" ? (
-                    <Td>{aluno?.faixa} anos</Td>
-                  ) : (
-                    <Td>Entre {aluno?.faixa} anos</Td>
-                  )}
-                  <Td>{aluno?.quantidade}</Td>
-                  <Td>{aluno?.porcentagem} %</Td>
+                  <Th>Label</Th>
+                  <Th>Quantidade</Th>
+                  <Th>Porcentagem</Th>
                 </Tr>
-              </Tbody>
-            ))}
-          </Table>
-        </TableContainer>
-      </Stack>
+              </Thead>
+              {alunos?.map((aluno, key) => (
+                <Tbody key={key}>
+                  <Tr>
+                    {aluno?.faixa === "55+" ? (
+                      <Td>{aluno?.faixa} anos</Td>
+                    ) : (
+                      <Td>Entre {aluno?.faixa} anos</Td>
+                    )}
+                    <Td>{aluno?.quantidade}</Td>
+                    <Td>{aluno?.porcentagem} %</Td>
+                  </Tr>
+                </Tbody>
+              ))}
+            </Table>
+          </TableContainer>
+        </Stack>
+      </Container>
     </div>
   );
 };

@@ -5,10 +5,12 @@ import { Avatar } from "@chakra-ui/react";
 import { MdLogout } from "react-icons/md";
 import AvatarImage from "../../assets/OIG.jpeg";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const HomeHeader = () => {
   const [userData, setUserData] = useState<IUser>();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
     const getUserFromStorage = () => {
@@ -26,8 +28,9 @@ const HomeHeader = () => {
     getUserFromStorage();
   }, []);
 
-  const logout = () => {
+  const handleLogout = () => {
     localStorage.clear();
+    logout();
     navigate("/");
   };
 
@@ -35,7 +38,11 @@ const HomeHeader = () => {
     <header className={styles.homeContainerHeader}>
       <div className={styles.homeHeaderDiv}>
         <Avatar name={userData?.userName} src={AvatarImage} />
-        <MdLogout size={24} onClick={logout} />
+        <MdLogout
+          style={{ cursor: "pointer" }}
+          size={24}
+          onClick={handleLogout}
+        />
       </div>
       <p className={styles.homeHeaderP}>Olá, {userData?.userName}!</p>
     </header>
