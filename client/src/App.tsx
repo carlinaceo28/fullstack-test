@@ -1,7 +1,7 @@
 import "./App.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./context/Auth";
 import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./pages/home/Home";
