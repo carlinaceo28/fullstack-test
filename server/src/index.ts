@@ -5,7 +5,7 @@ import router from "./routes/Router";
 import dotenv from "dotenv";
 
 const corsOptions = {
-  origin: "https://fullstack-test-g43a.onrender.com",
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 };
