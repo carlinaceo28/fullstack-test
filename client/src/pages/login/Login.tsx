@@ -31,22 +31,9 @@ const Login = () => {
         userPassword: password,
       })
       .then(async (res) => {
-        await AsyncLocalStorage.setItem("userData", JSON.stringify(res?.data))
-          .then(() => {
-            console.log("usuario salvo");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      })
-       .then(() => {
-      try{
-        navigate("/home")
-        login(true)
-      } 
-      catch(error) {
-        console.error(error)
-      }
+         localStorage.setItem("userData", JSON.stringify(res?.data))
+         navigate("/home")
+         login(true)
       })
       .catch((error) => {
         toast({
