@@ -6,6 +6,7 @@ const server = http.createServer(app);
 
 connectDB().then(() => {
     server.listen(port, () => {
+        console.log(`Server running`);
     });
 }).catch((error) => console.error("Erro ao se conectar ao DB", error))
 
