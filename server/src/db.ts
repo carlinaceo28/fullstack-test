@@ -12,13 +12,11 @@ const connectDB = async (res: Response, req: Request) => {
 
   app.use((err: Error, req: Request, res: Response) => {
     if (err instanceof Error) {
-      return res.status(400).send({ message: err.message });
-    }
-
-    return res.status(500).send({
+       return res.status(500).send({
       status: "error",
       message: `Internal server error - ${err}`,
     });
+    }
   });
 };
 
