@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon",
+    "start:dev": "nodemon --omit=dev",
     "build": "npx tsc"
   },
   "author": "Raul Henrique",
