@@ -34,7 +34,7 @@ const RemoverAluno = () => {
           const parsedInfoFromStorage = JSON.parse(response);
           setToken(parsedInfoFromStorage?.token);
           await axios
-            .get("http://localhost:5000/alunos", {
+            .get("https://fullstack-test-g43a.onrender.com/alunos", {
               headers: {
                 Authorization: "Bearer " + parsedInfoFromStorage?.token,
               },
