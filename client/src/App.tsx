@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./App.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
@@ -14,7 +14,6 @@ import { AuthRoute } from "./components/authRoute/AuthRoute";
 import NotFound from "./pages/notFound/NotFound";
 import { AsyncLocalStorage } from "./util/AsyncLocalStorage"
 function App() {
-  const [ storedUser, setStoredUser ] = useState(null);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -22,8 +21,7 @@ function App() {
       await AsyncLocalStorage.getItem("userData")
       .then((user) => {
         const parseUser = JSON.parse(user!);
-        setStoredUser(parseUser);
-        if (user) {
+        if (parseUser) {
           navigate("/home");
         };
       })
