@@ -26,7 +26,8 @@ const CadastrarAluno = () => {
   };
 
   const cadastrarAluno = async () => {
-    new Promise((resolve) => {
+    try {
+       new Promise((resolve) => {
       resolve(localStorage.getItem("userData"));
     })
       .then(async (response: any) => {
@@ -63,6 +64,9 @@ const CadastrarAluno = () => {
       .catch((error) => {
         console.error("error", error);
       });
+    } catch(error) {
+      console.error('erro ao cadastrar aluno', error);
+    }
   };
 
   return (
