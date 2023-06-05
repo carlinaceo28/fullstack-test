@@ -40,9 +40,12 @@ const Login = () => {
           });
       })
        .then(() => {
-        login(true);
-        history.push("/home");
-          })
+      try{
+      history.push("/home")
+        login(true);} catch(error) {
+        console.error(error)
+      }
+      })
       .catch((error) => {
         toast({
           title: error?.response?.data?.message,
