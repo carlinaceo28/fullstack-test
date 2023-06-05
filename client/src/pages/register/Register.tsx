@@ -24,7 +24,7 @@ const Register = () => {
 
   const signup = async () => {
     await axios
-      .post("http://localhost:5000/register", {
+      .post("https://fullstack-test-g43a.onrender.com/register", {
         userEmail: email,
         userName: userName,
         userPassword: password,

@@ -33,7 +33,7 @@ const CadastrarAluno = () => {
         const parsedInfoFromStorage = JSON.parse(response);
         await axios
           .post(
-            "http://localhost:5000/registrarAluno",
+            "https://fullstack-test-g43a.onrender.com/registrarAluno",
             { nome: nome, dataDeNascimento: dataDeNascimento },
             {
               headers: {

@@ -33,7 +33,7 @@ const Metricas = () => {
           const parsedInfoFromStorage = JSON.parse(response);
 
           await axios
-            .get("http://localhost:5000/alunosFiltrados", {
+            .get("https://fullstack-test-g43a.onrender.com/alunosFiltrados", {
               headers: {
                 Authorization: "Bearer " + parsedInfoFromStorage?.token,
               },

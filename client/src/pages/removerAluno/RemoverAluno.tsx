@@ -68,7 +68,7 @@ const RemoverAluno = () => {
 
   const removerAluno = async (_id: string) => {
     await axios
-      .delete(`http://localhost:5000/deletarAluno/${_id}`, {
+      .delete(`https://fullstack-test-g43a.onrender.com/deletarAluno/${_id}`, {
         headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
