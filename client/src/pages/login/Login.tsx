@@ -24,7 +24,8 @@ const Login = () => {
   const toast = useToast();
 
   const signup = async () => {
-    await axios
+    try {
+        await axios
       .post("https://fullstack-test-g43a.onrender.com/login", {
         userEmail: email,
         userPassword: password,
@@ -42,6 +43,9 @@ const Login = () => {
           isClosable: true,
         });
       });
+    } catch (error) {
+        console.error('erro ao logar', error);
+     }
   };
   const handleClick = () => setShow(!show);
 
