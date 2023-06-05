@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Aluno from "../../models/aluno/Aluno";
-import { IAlunoModel } from "../../models/aluno/interfaceIAlunoModel";
 
 export default {
   async registrarAluno(req: Request, res: Response) {
@@ -88,7 +87,7 @@ export default {
         .then(() => {
           return res.status(200).send({ message: "Aluno deletado!" })
         })
-        .catch((error) => {
+        .catch(() => {
           return res.status(400).send({ message: "Falha ao deletar o aluno!" })
         });
     } catch (error) {
@@ -98,7 +97,7 @@ export default {
 
   async filtrarAlunosPorIdade(req: Request, res: Response) {
     try {
-      const buscarTodosAlunos = await Aluno.find()
+      await Aluno.find()
         .then(alunos => {
           function calcularIdade(dataDeNascimento: string) {
 

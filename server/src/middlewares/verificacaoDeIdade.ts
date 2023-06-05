@@ -13,7 +13,6 @@ function isOver18(req: Request, res: Response, next: NextFunction) {
   const ageDiffMs = currentDate.getTime() - birthDate.getTime();
   const ageDate = new Date(ageDiffMs);
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-  console.log(ageDiffMs, ageDate)
   if (age >= 18) {
     next();
   } if (age > 116) {
