@@ -19,9 +19,8 @@ export default {
       newAluno.save((error: any) => {
         if (error) {
           return res.status(400).send({ message: "Preencha os campos corretamente", error });
-        } else {
-          return res.status(200).send({ message: "Registrado(a) com sucesso!" });
-        }
+        } 
+        return res.status(200).send({ message: "Registrado(a) com sucesso!" });
       });
 
     } catch (error) {
