@@ -10,7 +10,6 @@ import RemoverAluno from "./pages/removerAluno/RemoverAluno";
 import EditarAluno from "./pages/editarAluno/EditarAluno";
 import Metricas from "./pages/metricas/Metricas";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
-import PersistLogin from "./components/persistLogin/PersistLogin";
 import NotFound from "./pages/notFound/NotFound";
 
 function App() {
