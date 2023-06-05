@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
-import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
