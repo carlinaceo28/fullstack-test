@@ -39,7 +39,7 @@ export default {
         return res.status(404).send({ alunos: 'Nenhum aluno encontrado!' });
       }
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error })
+     return res.status(500).send({ message: "Internal Server Error", error })
     }
   },
 
@@ -54,7 +54,7 @@ export default {
         return res.status(404).send({ alunos: 'Aluno não encontrado!' });
       }
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error })
+     return res.status(500).send({ message: "Internal Server Error", error })
     }
   },
 
@@ -75,7 +75,7 @@ export default {
         })
 
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error });
+     return res.status(500).send({ message: "Internal Server Error", error });
     }
   },
 
@@ -91,7 +91,7 @@ export default {
           return res.status(400).send({ message: "Falha ao deletar o aluno!" })
         });
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error })
+     return res.status(500).send({ message: "Internal Server Error", error })
     }
   },
 
@@ -152,7 +152,7 @@ export default {
           return res.status(400).send({ message: "Falha ao filtrar alunos", error })
         });
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error })
+     return res.status(500).send({ message: "Internal Server Error", error })
     }
   }
 }
