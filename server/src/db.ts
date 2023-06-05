@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 import app from "./index";
 
-const connectDB = async () => {
+const connectDB = async (res: Response, req: Request) => {
   mongoose.set("strictQuery", false);
 
   await mongoose
