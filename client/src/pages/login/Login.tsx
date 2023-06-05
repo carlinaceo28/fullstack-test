@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import styles from "./login.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useHistory  } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
@@ -21,7 +21,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const history = useHistory();
   const toast = useToast();
 
   const signup = async () => {
@@ -40,8 +40,8 @@ const Login = () => {
           });
       })
        .then(() => {
-            login(true);
-            navigate("/home");
+        login(true);
+        history.push("/home");
           })
       .catch((error) => {
         toast({
