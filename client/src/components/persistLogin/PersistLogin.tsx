@@ -10,10 +10,6 @@ const PersistLogin = () => {
   useEffect(() => {
     isAuthenticated && persist && setIsLoading(false);
   }, []);
-  useEffect(() => {
-    console.log(`isLoading: ${isLoading}`);
-    console.log(`aT: ${JSON.stringify(persist)}`);
-  }, [isLoading]);
 
   return <>{persist ? <Outlet /> : isLoading ? <NotFound /> : <Outlet />}</>;
 };
