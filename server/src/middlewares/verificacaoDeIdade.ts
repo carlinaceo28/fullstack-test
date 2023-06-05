@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from "express"
+
 function isOver18(req: Request, res: Response, next: NextFunction) {
   const { dataDeNascimento } = req.body;
   if (!dataDeNascimento) {
