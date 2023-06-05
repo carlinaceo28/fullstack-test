@@ -18,6 +18,7 @@ function isOver18(req: Request, res: Response, next: NextFunction) {
   }  else {
     return res.status(403).send({ message: 'O aluno precisa ser maior de 18 anos!' });
   }
+  return
 }
 
 export default isOver18;
