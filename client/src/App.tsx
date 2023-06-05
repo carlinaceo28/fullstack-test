@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import "./App.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
 import { AuthContextProvider } from "./context/Auth";
 import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./pages/home/Home";
@@ -11,8 +12,26 @@ import EditarAluno from "./pages/editarAluno/EditarAluno";
 import Metricas from "./pages/metricas/Metricas";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
 import NotFound from "./pages/notFound/NotFound";
-
+import { AsyncLocalStorage } from "./util/AsyncLocalStorage"
 function App() {
+  const [ storedUser, setStoredUser ] = useState(null);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const getStoredUser = async () => {
+      await AsyncLocalStorage.getItem("userData")
+      .then((user) => {
+        const parseUser = JSON.parse(user!);
+        setStoredUser(parseUser);
+        if (user) {
+          navigate("/home");
+        };
+      })
+      .catch((error) => console.error("Erro ao obter user no storage");
+    };
+    getStoredUser();
+  }, [])
+  
   return (
     <ChakraProvider>
       <AuthContextProvider>
