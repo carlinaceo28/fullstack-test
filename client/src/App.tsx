@@ -27,7 +27,7 @@ function App() {
           navigate("/home");
         };
       })
-      .catch((error) => console.error("Erro ao obter user no storage");
+      .catch((error) => console.error("Erro ao obter user no storage"));
     };
     getStoredUser();
   }, [])
