@@ -33,13 +33,16 @@ const Login = () => {
       .then(async (res) => {
         await AsyncLocalStorage.setItem("userData", JSON.stringify(res?.data))
           .then(() => {
-            login(true);
-            navigate("/home");
+            console.log("usuario salvo");
           })
           .catch((error) => {
             console.error(error);
           });
       })
+       .then(() => {
+            login(true);
+            navigate("/home");
+          })
       .catch((error) => {
         toast({
           title: error?.response?.data?.message,
