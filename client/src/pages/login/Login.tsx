@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import styles from "./login.module.scss";
-import { useHistory, useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
@@ -21,7 +21,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const { login } = useAuth();
-  const history = useHistory();
   const navigate = useNavigate()
   const toast = useToast();
 
@@ -42,8 +41,10 @@ const Login = () => {
       })
        .then(() => {
       try{
-      history.push("/home")
-        login(true);} catch(error) {
+        navigate("/home")
+        login(true)
+      } 
+      catch(error) {
         console.error(error)
       }
       })
