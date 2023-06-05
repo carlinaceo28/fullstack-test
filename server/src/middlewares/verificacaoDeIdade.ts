@@ -15,9 +15,7 @@ function isOver18(req: Request, res: Response, next: NextFunction) {
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
   if (age >= 18) {
     next();
-  } if (age > 116) {
-    return res.status(403).send({ message: 'Data de nascimento inválida!' });
-  } else {
+  }  else {
     return res.status(403).send({ message: 'O aluno precisa ser maior de 18 anos!' });
   }
 }
