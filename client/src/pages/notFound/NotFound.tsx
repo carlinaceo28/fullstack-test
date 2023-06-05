@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
-import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
   const [user, setUser] = useState(null);
