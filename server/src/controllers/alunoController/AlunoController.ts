@@ -25,7 +25,7 @@ export default {
       });
 
     } catch (error) {
-      res.status(500).send({ message: "Internal Server Error", error })
+      return res.status(500).send({ message: "Internal Server Error", error })
     }
   },
 
