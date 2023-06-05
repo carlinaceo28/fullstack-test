@@ -1,5 +1,5 @@
 {
-  "start:dev": "npx nodemon",
+  "start:dev": "npx nodemon --omit=dev",
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
