@@ -86,7 +86,7 @@ const EditarAluno = () => {
   const editarAluno = async (_id: string) => {
     await axios
       .put(
-        `http://localhost:5000/editarAluno/${_id}`,
+        `https://fullstack-test-g43a.onrender.com/editarAluno/${_id}`,
         {
           nome: nome,
           dataDeNascimento: dataDeNascimento
