@@ -6,10 +6,15 @@ export default {
     try {
       const { nome, dataDeNascimento } = req.body;
 
-      const procurarAlunoExistente = await Aluno.findOne({ nome, dataDeNascimento })
+      if(!nome || nome.length < 2) {
+        return res.status(400).send({message: "Nome vazio ou inválido"});
+      };
+
+      const procurarAlunoExistente = await Aluno.findOne({ nome, dataDeNascimento });
+
       if (procurarAlunoExistente) {
         return res.status(400).send({ message: "Aluno já cadastrado" });
-      }
+      };
 
       const newAluno = new Aluno({
         nome,
