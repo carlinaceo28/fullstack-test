@@ -86,7 +86,7 @@ const CadastrarAluno = () => {
             onChange={handleChange}
             required
             type="text"
-            placeholder="dd/mm/yy"
+            placeholder="dd/mm/yyyy"
           />
           <Button
             backgroundColor={"#ea4c89"}
