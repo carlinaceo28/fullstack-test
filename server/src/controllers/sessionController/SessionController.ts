@@ -12,42 +12,38 @@ export default {
       const { userEmail, userPassword }: IUserModel = req.body;
 
       if (!userEmail || !userPassword) {
-        return res.status(400).send({ message: "Preencha os campos corretamente" });
-      }
-      const userAlreadyExists = await User.findOne<Promise<IUserModel>>({ userEmail });
-      if (userEmail !== userAlreadyExists?.userEmail) {
-        return res.status(401).send({ message: "Usuário não encontrado!" });
+        return res.status(400).json({ message: "Preencha os campos corretamente" });
       }
 
-      if (!userAlreadyExists) {
-        return res.status(400).send({ message: "Usuário não encontrado" });
+      const user = await User.findOne({ userEmail });
+
+      if (!user) {
+        return res.status(401).json({ message: "Usuário não encontrado!" });
       }
 
-      const validPassword = await bCrypt.compare(userPassword, userAlreadyExists?.userPassword);
+      const validPassword = await bCrypt.compare(userPassword, user.userPassword);
 
       if (!validPassword) {
-        return res.status(400).send({ message: "Email ou senha incorretos!" });
+        return res.status(400).json({ message: "Email ou senha incorretos!" });
       }
+
       const token = jwt.sign(
         {
-          email: userAlreadyExists,
+          email: user.userEmail,
         },
         process.env.JWT_KEY!,
         {
           expiresIn: "48h",
         }
       );
-      return (
-        userAlreadyExists &&
-        res.send({
-          userEmail: userAlreadyExists?.userEmail,
-          _id: userAlreadyExists?._id,
-          userName: userAlreadyExists?.userName,
-          token: token,
-        })
-      );
-    } catch (error) {
-      return res.status(500).send({ message: "Internal server error", error });
-    }
-  },
+
+      return res.send({
+        userEmail: user.userEmail,
+        _id: user._id,
+        userName: user.userName,
+        token: token,
+      });
+  } catch (error) {
+      return res.status(500).json({ message: "Internal server error", error });
+  }
 };
