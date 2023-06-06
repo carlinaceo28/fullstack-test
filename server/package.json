@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon",
-    "build": "npx tsc"
+    "build": "npm install --omit=dev && npx tsc"
   },
   "author": "Raul Henrique",
   "license": "ISC",
