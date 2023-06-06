@@ -1,27 +1,27 @@
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router";
+import { Navigate, Outlet, redirect } from "react-router";
 import { useEffect, useState } from "react";
 import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
 
 export const AuthRoute = () => {
-  const location = useLocation();
-  const [user, setUser] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const [userFromStorage, setUserFromStorage] = useState<object | null>(null);
+
   useEffect(() => {
-    const getUser = async () => {
-      await AsyncLocalStorage.getItem("userData")
-        .then(async (user) => {
-          const parsedUser = JSON.parse(user!);
-          setUser(parsedUser);
-          navigate("/home");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    getUser();
+    const getUserFromStorage = async () => {
+      try {
+        const getUser = await AsyncLocalStorage.getItem("userData");
+        const parseUser = JSON.parse(getUser!)
+        setUserFromStorage(parseUser);
+        console.log(parseUser)
+         userFromStorage ? redirect("/home") : redirect("/")
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getUserFromStorage()
   }, []);
 
-  return user ? (
+
+  return userFromStorage ? (
     <Outlet />
   ) : (
     <Navigate to={"/"} state={{ from: location }} replace />
