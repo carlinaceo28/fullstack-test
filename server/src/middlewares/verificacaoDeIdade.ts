@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from "express"
 
 function isOver18(req: Request, res: Response, next: NextFunction) {
   const { dataDeNascimento } = req.body;
-  console.log(dataDeNascimento)
+
   if (!dataDeNascimento) {
     return res.status(400).send({ message: 'Data de nascimento inválida!' });
   }
+
   if (dataDeNascimento.length < 10) {
     return res.status(400).send({message: "Data inválida"});
   }
