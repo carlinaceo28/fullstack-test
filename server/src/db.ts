@@ -3,20 +3,20 @@ import mongoose from "mongoose";
 import app from "./index";
 
 const connectDB = async () => {
-  try {
-    mongoose.set("strictQuery", false);
+  mongoose.set("strictQuery", false);
 
-    await mongoose.connect(process.env.DB_URI!);
-    console.log("Connected to DB");
-  } catch (err) {
-    console.error("Could not connect", err);
-  }
+  await mongoose
+    .connect(process.env.DB_URI!)
+    .then(() => console.log("Connected to DB"))
+    .catch((err: any) => console.error("Could not connect", err));
 
   app.use((err: Error, req: Request, res: Response) => {
-    res.status(500).json({
+    if (err instanceof Error) {
+       return res.status(500).send({
       status: "error",
       message: `Internal server error - ${err}`,
     });
+    }
   });
 };
 
