@@ -29,9 +29,13 @@ const HomeHeader = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear();
-    logout();
-    navigate("/");
+    try{
+      localStorage.clear();
+      logout();
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao deslogar", error);
+    };
   };
 
   return (
