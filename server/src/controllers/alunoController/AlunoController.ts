@@ -120,7 +120,7 @@ export default {
               { faixa: '26-35', quantidade: 0, porcentagem: 0 },
               { faixa: '36-45', quantidade: 0, porcentagem: 0 },
               { faixa: '46-55', quantidade: 0, porcentagem: 0 },
-              { faixa: '55+', quantidade: 0, porcentagem: 0 }
+              { faixa: '55-99', quantidade: 0, porcentagem: 0 }
             ];
 
             const totalAlunos = alunos.length;
