@@ -20,20 +20,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const { login } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const toast = useToast();
 
   const signup = async () => {
-    try {
-     await axios
+    await axios
       .post("https://fullstack-test-g43a.onrender.com/login", {
         userEmail: email,
         userPassword: password,
       })
       .then(async (res) => {
-         localStorage.setItem("userData", JSON.stringify(res?.data))
-         navigate("/home")
-         login(true)
+        localStorage.setItem("userData", JSON.stringify(res?.data));
+        navigate("/home");
+        login(true);
       })
       .catch((error) => {
         toast({
@@ -43,9 +42,6 @@ const Login = () => {
           isClosable: true,
         });
       });
-    } catch (error) {
-        console.error('erro ao logar', error);
-     }
   };
   const handleClick = () => setShow(!show);
 
