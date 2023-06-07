@@ -34,7 +34,7 @@ const Login = () => {
       login(true);
       navigate("/home");
     } catch (error) {
-      const errorMessage = (error as string) || "Erro ao logar!";
+      const errorMessage = "Email ou senha incorretos!";
       
     toast({
       title: errorMessage,
