@@ -35,7 +35,7 @@ const Login = () => {
       navigate("/home");
     } catch (error) {
       const errorMessage =
-      (error?.response! && error?.response?.data! && error?.response?.data.message!) ||
+      (error?.response?.data?.message as string) || "Erro ao logar!"; ||
       "Erro ao logar!";
 
     toast({
