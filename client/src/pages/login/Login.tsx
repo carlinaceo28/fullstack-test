@@ -51,9 +51,9 @@ const Login = () => {
       if(userData) {
         window.location.reload();
       } else {
-        return
+        setIsLoading(false);
       }
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
   
