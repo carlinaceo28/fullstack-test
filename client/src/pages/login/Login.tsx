@@ -34,12 +34,16 @@ const Login = () => {
       login(true);
       navigate("/home");
     } catch (error) {
-      toast({
-          title: error?.response?.data?.message!,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-      });
+      const errorMessage =
+      (error.response && error.response.data && error.response.data.message) ||
+      "Erro ao logar!";
+
+    toast({
+      title: errorMessage,
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
     }
   };
   
