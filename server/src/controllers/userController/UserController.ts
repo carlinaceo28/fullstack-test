@@ -20,9 +20,10 @@ export default {
 
       let email = userEmail.trim();
       let password = userPassword.replace(/\s/g, "");
+      const specialCharactersRegex: RegExp = /[!@#$%^&*(),.?":{}|<>]/;
       
-      if (/\d/.test(userName)) {
-        return res.status(400).send({ message: 'O nome não pode conter números' });
+      if (/\d/.test(userName) || specialCharactersRegex.test(userName) || userName.length < 2) {
+        return res.status(400).send({ message: 'Insira um nome válido' });
       };
       
       if (password.length < 8 && password.length > 0) {
