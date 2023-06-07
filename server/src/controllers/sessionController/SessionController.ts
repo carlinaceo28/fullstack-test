@@ -28,6 +28,7 @@ export default {
       if (!validPassword) {
         return res.status(400).send({ message: "Email ou senha incorretos!" });
       }
+
       const token = jwt.sign(
         {
           email: userAlreadyExists,
@@ -37,6 +38,7 @@ export default {
           expiresIn: "48h",
         }
       );
+
       return res.send({
         userEmail: userAlreadyExists?.userEmail,
         _id: userAlreadyExists?._id,
