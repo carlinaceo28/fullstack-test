@@ -13,7 +13,6 @@ import { AuthRoute } from "./components/authRoute/AuthRoute";
 import NotFound from "./pages/notFound/NotFound";
 
 function App() {
-
   return (
     <ChakraProvider>
       <AuthContextProvider>
@@ -22,25 +21,15 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
             <Route path="*" element={<NotFound />} />
+
             <Route element={<AuthRoute />}>
               <Route path="/home" element={<Home />} />
-            </Route>
-
-            <Route element={<AuthRoute />}>
               <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
-            </Route>
-
-            <Route element={<AuthRoute />}>
               <Route path="/removerAluno" element={<RemoverAluno />} />
-            </Route>
-
-            <Route element={<AuthRoute />}>
               <Route path="/editarAluno" element={<EditarAluno />} />
-            </Route>
-
-            <Route element={<AuthRoute />}>
               <Route path="/minhasMetricas" element={<Metricas />} />
             </Route>
+
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>

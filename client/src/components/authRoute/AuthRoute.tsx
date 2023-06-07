@@ -1,9 +1,11 @@
-import { Navigate, Outlet, redirect } from "react-router";
 import { useEffect, useState } from "react";
+import { Navigate, useLocation, Outlet } from "react-router";
 import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
 
 export const AuthRoute = () => {
   const [userFromStorage, setUserFromStorage] = useState<object | null>(null);
+  const [loading, setLoading] = useState(true)
+  const location = useLocation();
 
   useEffect(() => {
     const getUserFromStorage = async () => {
@@ -12,17 +14,17 @@ export const AuthRoute = () => {
         const parseUser = JSON.parse(getUser!)
         setUserFromStorage(parseUser);
         console.log(parseUser)
-         userFromStorage ? redirect("/home") : redirect("/")
+        setLoading(false)
       } catch (error) {
         console.error(error);
       }
     }
     getUserFromStorage()
-  }, []);
+  }, [loading]);
+console.log(userFromStorage)
 
-
-  return userFromStorage ? (
-    <Outlet />
+  return userFromStorage && !loading ? (
+    <Outlet/>
   ) : (
     <Navigate to={"/"} state={{ from: location }} replace />
   );
