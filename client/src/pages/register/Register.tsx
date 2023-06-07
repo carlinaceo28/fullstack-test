@@ -22,7 +22,7 @@ const Register = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const signup = async () => {
+  const userRegister = async () => {
     await axios
       .post("https://fullstack-test-g43a.onrender.com/register", {
         userEmail: email,
@@ -36,6 +36,9 @@ const Register = () => {
           duration: 5000,
           isClosable: true,
         });
+      setEmail("");
+      setUserName("");
+      setPassword("");
       })
       .catch((error) => {
         toast({
@@ -44,7 +47,6 @@ const Register = () => {
           duration: 5000,
           isClosable: true,
         });
-        console.error("Erro ao logar", error);
       });
   };
   const handleClick = () => setShow(!show);
@@ -97,7 +99,7 @@ const Register = () => {
             color={"#ffffff"}
             width={"100%"}
             fontSize={"medium"}
-            onClick={signup}
+            onClick={userRegister}
           >
             Registrar
           </Button>
