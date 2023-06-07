@@ -20,6 +20,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
@@ -33,6 +34,7 @@ const Login = () => {
         userPassword: password,
       })
       localStorage.setItem("userData", JSON.stringify(userLoginPost?.data));
+      setUserData(userLoginPost?.data)
       login(true);
       navigate("/home");
       window.location.reload()
@@ -46,7 +48,11 @@ const Login = () => {
     });
     }
     finally {
-      window.location.reload()
+      if(userData) {
+        window.location.reload();
+      } else {
+        return
+      }
       setIsLoading(false);
     }
   };
