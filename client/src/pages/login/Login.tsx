@@ -24,10 +24,6 @@ const Login = () => {
   const navigate = useNavigate();
   const toast = useToast();
   
-  useEffect(() => {
-    console.log(isLoading)
-  }, [isLoading]) 
-
   const signup = async () => {
     try {
       setIsLoading(true)
@@ -39,6 +35,7 @@ const Login = () => {
       localStorage.setItem("userData", JSON.stringify(userLoginPost?.data));
       login(true);
       navigate("/home");
+      window.location.reload()
     } catch (error) {
       const errorMessage = "Email ou senha incorretos!";
     toast({
@@ -86,7 +83,7 @@ const Login = () => {
           </InputGroup>
           {isLoading ? (<Button
                           isLoading
-                          loadingText=' Logando...'
+                          loadingText='Logando...'
                           colorScheme='teal'
                           variant='outline'
                           padding={6}
