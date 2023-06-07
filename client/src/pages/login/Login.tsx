@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import {
   Button,
@@ -23,6 +23,10 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
+  
+  useEffect(() => {
+    console.log(isLoading)
+  }, [isLoading]) 
 
   const signup = async () => {
     try {
@@ -85,6 +89,9 @@ const Login = () => {
                           loadingText=' Logando...'
                           colorScheme='teal'
                           variant='outline'
+                          padding={6}
+                          width={"100%"}
+                          size="xs"
                         >
                           Logando...
                         </Button>) : 
