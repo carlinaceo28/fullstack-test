@@ -20,19 +20,23 @@ export default {
 
       let email = userEmail.trim();
       let password = userPassword.replace(/\s/g, "");
-
+      
+      if (/\d/.test(userName)) {
+        return res.status(400).send({ message: 'O nome não pode conter números' });
+      };
+      
       if (password.length < 8 && password.length > 0) {
         return res.status(400).send({ message: "A senha deve ter mais de 8 caracteres" });
-      }
+      };
 
       if (!userName || !email || !password) {
         return res.status(400).send({ message: "Por favor preencha todos os campos!" });
-      }
+      };
 
       const searchEmail = await User.findOne<Promise<IUserModel>>({ userEmail: email });
       if (searchEmail) {
         return res.status(400).send({ message: "Email em uso!" });
-      }
+      };
 
       const hashedPassword = await hashPassword(password);
 
