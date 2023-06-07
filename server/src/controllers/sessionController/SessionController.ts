@@ -16,7 +16,7 @@ export default {
       }
       const userAlreadyExists = await User.findOne<Promise<IUserModel>>({ userEmail });
       if (userEmail !== userAlreadyExists?.userEmail) {
-        return res.status(401).send({ message: "Usuário não encontrado!" });
+        return res.status(401).send({ message: "Email ou senha incorretos!" });
       }
 
       if (!userAlreadyExists) {
@@ -38,11 +38,11 @@ export default {
         }
       );
       return res.send({
-          userEmail: userAlreadyExists?.userEmail,
-          _id: userAlreadyExists?._id,
-          userName: userAlreadyExists?.userName,
-          token: token,
-        })
+        userEmail: userAlreadyExists?.userEmail,
+        _id: userAlreadyExists?._id,
+        userName: userAlreadyExists?.userName,
+        token: token,
+      })
     } catch (error) {
       return res.status(500).send({ message: "Internal server error", error });
     }

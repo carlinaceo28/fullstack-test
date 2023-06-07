@@ -24,7 +24,6 @@ function App() {
         const getUser = await AsyncLocalStorage.getItem("userData");
         const parseUser = JSON.parse(getUser!);
         setUserFromStorage(parseUser);
-        console.log(parseUser);
         setLoading(false);
       } catch (error) {
         console.error(error);

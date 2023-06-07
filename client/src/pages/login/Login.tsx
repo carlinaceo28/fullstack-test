@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import {
   Button,
   Container,
@@ -9,9 +10,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import styles from "./login.module.scss";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import styles from "./login.module.scss";
 import { MdAlternateEmail } from "react-icons/md";
 import LOGO from "../../assets/_aaccdb35-cc72-43a9-a296-92b111d540c5.jpeg";
 
@@ -43,6 +43,7 @@ const Login = () => {
         });
       });
   };
+
   const handleClick = () => setShow(!show);
 
   return (
