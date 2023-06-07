@@ -26,6 +26,7 @@ const Login = () => {
 
   const signup = async () => {
     try {
+      setIsLoading(true)
       const userLoginPost =  await axios
       .post("https://fullstack-test-g43a.onrender.com/login", {
         userEmail: email,
@@ -33,7 +34,6 @@ const Login = () => {
       })
       localStorage.setItem("userData", JSON.stringify(userLoginPost?.data));
       login(true);
-      setIsLoading(true)
       navigate("/home");
     } catch (error) {
       const errorMessage = "Email ou senha incorretos!";
