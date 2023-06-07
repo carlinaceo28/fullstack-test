@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import {
   Button,
@@ -23,6 +23,10 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
+  
+  useEffect(() => {
+    window.location.reload()
+  }, [isLoading])
   
   const signup = async () => {
     try {
