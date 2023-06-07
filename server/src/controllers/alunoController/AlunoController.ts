@@ -10,7 +10,7 @@ export default {
         return res.status(400).send({message: "Nome vazio ou inválido"});
       };
       
-      if (/\d/.test(name)) {
+      if (/\d/.test(nome)) {
        return res.status(400).send({ message: "O nome não pode conter números" });
       };
 
