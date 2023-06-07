@@ -9,6 +9,10 @@ export default {
       if(!nome || nome.length < 2) {
         return res.status(400).send({message: "Nome vazio ou inválido"});
       };
+      
+      if (/\d/.test(name)) {
+       return res.status(400).send({ message: "O nome não pode conter números" });
+      };
 
       const procurarAlunoExistente = await Aluno.findOne({ nome, dataDeNascimento });
 
