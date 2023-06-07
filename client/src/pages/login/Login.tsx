@@ -24,26 +24,25 @@ const Login = () => {
   const toast = useToast();
 
   const signup = async () => {
-    await axios
+    try {
+      const userLoginPost =  await axios
       .post("https://fullstack-test-g43a.onrender.com/login", {
         userEmail: email,
         userPassword: password,
       })
-      .then(async (res) => {
-        localStorage.setItem("userData", JSON.stringify(res?.data));
-        navigate("/home");
-        login(true);
-      })
-      .catch((error) => {
-        toast({
-          title: error?.response?.data?.message,
+      localStorage.setItem("userData", JSON.stringify(userLoginPost?.data));
+      login(true);
+      navigate("/home");
+    } catch (error) {
+      toast({
+          title: error?.response?.data?.message!,
           status: "error",
           duration: 5000,
           isClosable: true,
-        });
       });
+    }
   };
-
+  
   const handleClick = () => setShow(!show);
 
   return (
