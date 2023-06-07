@@ -19,6 +19,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
@@ -32,16 +33,19 @@ const Login = () => {
       })
       localStorage.setItem("userData", JSON.stringify(userLoginPost?.data));
       login(true);
+      setIsLoading(true)
       navigate("/home");
     } catch (error) {
       const errorMessage = "Email ou senha incorretos!";
-      
     toast({
       title: errorMessage,
       status: "error",
       duration: 5000,
       isClosable: true,
     });
+    }
+    finally {
+      setIsLoading(false);
     }
   };
   
@@ -76,18 +80,27 @@ const Login = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
-
-          <Button
-            backgroundColor={"#ea4c89"}
-            size="xs"
-            padding={6}
-            color={"#ffffff"}
-            width={"100%"}
-            fontSize={"medium"}
-            onClick={signup}
+          {isLoading ? (<Button
+                          isLoading
+                          loadingText=' Logando...'
+                          colorScheme='teal'
+                          variant='outline'
+                        >
+                          Logando...
+                        </Button>) : 
+            (<Button
+              backgroundColor={"#ea4c89"}
+              size="xs"
+              padding={6}
+              color={"#ffffff"}
+              width={"100%"}
+              fontSize={"medium"}
+              onClick={signup}
           >
             Login
           </Button>
+          )};
+          
           <div className={styles.loginContainerDivP}>
             <p
               onClick={() => navigate("/registrar")}
