@@ -11,8 +11,28 @@ import EditarAluno from "./pages/editarAluno/EditarAluno";
 import Metricas from "./pages/metricas/Metricas";
 import { AuthRoute } from "./components/authRoute/AuthRoute";
 import NotFound from "./pages/notFound/NotFound";
+import { useEffect, useState } from "react";
+import { AsyncLocalStorage } from "./util/AsyncLocalStorage";
 
 function App() {
+  const [userFromStorage, setUserFromStorage] = useState<object | null>(null);
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const getUserFromStorage = async () => {
+      try {
+        const getUser = await AsyncLocalStorage.getItem("userData");
+        const parseUser = JSON.parse(getUser!)
+        setUserFromStorage(parseUser);
+        console.log(parseUser)
+        setLoading(false)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getUserFromStorage()
+  }, [loading]);
+
   return (
     <ChakraProvider>
       <AuthContextProvider>
@@ -21,15 +41,25 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/registrar" element={<Register />} />
             <Route path="*" element={<NotFound />} />
+              <Route path="/home" element={
+              <AuthRoute>
+                <Home />
+              </AuthRoute>
+              } />
 
-            <Route element={<AuthRoute />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/cadastrarAluno" element={<CadastrarAluno />} />
-              <Route path="/removerAluno" element={<RemoverAluno />} />
-              <Route path="/editarAluno" element={<EditarAluno />} />
-              <Route path="/minhasMetricas" element={<Metricas />} />
-            </Route>
+              <Route path="/cadastrarAluno" element={<AuthRoute><CadastrarAluno /></AuthRoute>} />
 
+            
+              <Route path="/removerAluno" element={<AuthRoute><RemoverAluno /></AuthRoute>} />
+            
+
+            
+              <Route path="/editarAluno" element={<AuthRoute><EditarAluno /></AuthRoute>} />
+            
+
+            
+              <Route path="/minhasMetricas" element={<AuthRoute><Metricas /></AuthRoute>} />
+            
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>

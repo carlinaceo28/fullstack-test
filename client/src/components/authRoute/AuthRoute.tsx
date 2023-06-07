@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { Navigate, useLocation, Outlet } from "react-router";
 import { AsyncLocalStorage } from "../../util/AsyncLocalStorage";
+import Login from "../../pages/login/Login";
 
-export const AuthRoute = () => {
+interface IAuth {
+  children: React.ReactElement;
+}
+
+export const AuthRoute: React.FC<IAuth> = ({children}) => {
   const [userFromStorage, setUserFromStorage] = useState<object | null>(null);
   const [loading, setLoading] = useState(true)
-  const location = useLocation();
 
   useEffect(() => {
     const getUserFromStorage = async () => {
@@ -13,19 +17,17 @@ export const AuthRoute = () => {
         const getUser = await AsyncLocalStorage.getItem("userData");
         const parseUser = JSON.parse(getUser!)
         setUserFromStorage(parseUser);
-        console.log(parseUser)
         setLoading(false)
+        console.log(userFromStorage)
       } catch (error) {
         console.error(error);
       }
     }
     getUserFromStorage()
   }, [loading]);
-console.log(userFromStorage)
 
-  return userFromStorage && !loading ? (
-    <Outlet/>
-  ) : (
-    <Navigate to={"/"} state={{ from: location }} replace />
-  );
+  if(!userFromStorage) {
+    return <Login />
+  }
+  return children
 };
