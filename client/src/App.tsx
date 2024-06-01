@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { AsyncLocalStorage } from "./util/AsyncLocalStorage";
 
 function App() {
+  console.log("RaulBobão")
   const [userFromStorage, setUserFromStorage] = useState<object | null>(null);
   const [loading, setLoading] = useState(true);
 
